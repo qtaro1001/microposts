@@ -1,4 +1,18 @@
-<h1>
-  <%= gravatar_for @user %>
-  <%= @user.name %>
-</h1>
+<div align="center">
+  <dt>
+    <h1>
+    <%= gravatar_for @user %>
+    <%= @user.name %>      
+    </h1>
+  </dt>
+  <h2>
+  <dt>e-mail</dt>
+  <dd><%= @user.email %></dd>
+  <br>
+  <dt>area</dt>
+  <dd><%= @user.area %></dd>
+  <br>
+  <dt>profile</dt>
+  <dd><%= @user.profile %></dd>
+  </h2>
+</div>
