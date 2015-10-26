@@ -1,0 +1,19 @@
+<div class="row">
+  <aside class="col-md-4">
+    <%= render 'show_header' %>    
+  </aside>
+  <div class="col-md-8">
+    <%= render 'follow_form' if logged_in? %>
+    <% if @users.any? %>
+      <h3>Following (<%= @users.count %>)</h3>
+      <% @users.pluck(:follower_id).each do |i| %>
+        <ol  class="users follow">
+          <section>
+          <%= gravatar_for User.find(i) %>
+          <h3><%=link_to User.find(i).name, followers_user_path(i) %></h3>
+          </section>
+        </ol>
+      <% end %>
+    <% end %>
+  </div>
+</div>
