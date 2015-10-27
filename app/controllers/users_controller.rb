@@ -5,7 +5,7 @@ class UsersController < ApplicationController
                                         :followings, :followers]
                                         
   def show
-   @microposts = @user.microposts
+    @microposts = @user.microposts
   end
   
   def new
@@ -35,8 +35,7 @@ class UsersController < ApplicationController
   end
   
   def followings
-    @title = "FOLLOWING
-    "
+    @title = "FOLLOWING"
     @users = @user.following_users
     render 'show_follow'
   end
@@ -49,7 +48,7 @@ class UsersController < ApplicationController
 
   def index
     @title = "ALL USERS"
-    @users = User.all
+    @users = User.page(params[:page]).per(7)
   end
   
   private
@@ -60,6 +59,6 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation, :area,
-                                 :profile)
+                                 :profile, :image)
   end
 end
