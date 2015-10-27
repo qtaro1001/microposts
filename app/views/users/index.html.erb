@@ -3,8 +3,8 @@
     <%= paginate @users %>
   
   <div class="col-md-offset-4 col-md-8">
-    <% if @users.any? %>
-      <h3><%= @title %> (<%= @users.count %>)</h3>
+    <% if @user.any? %>
+      <h3><%= @title %> (<%= @user.count %>)</h3>
       <% @users.each do |i| %>
         <ol  class="users follow">
           <section>

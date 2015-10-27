@@ -48,6 +48,7 @@ class UsersController < ApplicationController
 
   def index
     @title = "ALL USERS"
+    @user = User.all
     @users = User.page(params[:page]).per(7)
   end
   
