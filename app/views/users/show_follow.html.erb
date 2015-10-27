@@ -5,12 +5,12 @@
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>
     <% if @users.any? %>
-      <h3>Following (<%= @users.count %>)</h3>
-      <% @users.pluck(:followed_id).each do |i| %>
+      <h3><%= @title %> (<%= @users.count %>)</h3>
+      <% @users.each do |i| %>
         <ol  class="users follow">
           <section>
-          <%= gravatar_for User.find(i) %>
-          <h3><%=link_to User.find(i).name, followers_user_path(i) %></h3>
+          <%= gravatar_for i %>
+          <h3><%=link_to i.name, i %></h3>
           </section>
         </ol>
       <% end %>

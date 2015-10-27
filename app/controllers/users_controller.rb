@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
                                         :followings, :followers]
+  before_action :set_user, only: [:show, :edit, :update, 
+                                        :followings, :followers]
                                         
   def show
-   @user = User.find(params[:id])
    @microposts = @user.microposts
   end
   
@@ -22,34 +23,40 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
-      redirect_to @user.
+      redirect_to @user
     else
       render 'edit'
     end
   end
   
   def followings
-    @user  = User.find(params[:id])
-    @users = @user.following_relationships
-    render 'followings'
+    @title = "FOLLOWING
+    "
+    @users = @user.following_users
+    render 'show_follow'
   end
 
   def followers
-    @user  = User.find(params[:id])
-    @users = @user.follower_relationships
-    render 'followers'
+    @title = "FOLLOWERS"
+    @users = @user.follower_users
+    render 'show_follow'
   end
 
-    
+  def index
+    @title = "ALL USERS"
+    @users = User.all
+  end
+  
   private
-
+  def set_user
+    @user  = User.find(params[:id])  
+  end
+  
   def user_params
     params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation, :area,
