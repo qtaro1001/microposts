@@ -1,7 +1,5 @@
 <div class="row">
-  
     <%= paginate @users %>
-  
   <div class="col-md-offset-4 col-md-8">
     <% if @user.any? %>
       <h3><%= @title %> (<%= @user.count %>)</h3>
@@ -15,7 +13,4 @@
       <% end %>
     <% end %>
   </div>
-  
-    <%= paginate @users %>
-  
 </div>
